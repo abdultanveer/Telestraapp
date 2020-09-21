@@ -3,6 +3,7 @@ package com.example.telestraapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,9 +25,24 @@ EditText nameEditText;
     }
 
     public void clickListener(View view) {
+        switch (view.getId()){
+            case R.id.buttonLogin:
+                startHomeActivity();
+                break;
+            case R.id.buttonCancel:
+                Intent dIntent = new Intent();
+                dIntent.setAction(Intent.ACTION_DIAL);
+                dIntent.setData( Uri.parse("tel:98765432"));
+                startActivity(dIntent);
+                break;
+        }
+
+    }
+
+    private void startHomeActivity() {
         String name = nameEditText.getText().toString();
         Toast.makeText(this, "welcome "+name +" to android", Toast.LENGTH_SHORT).show();
-        Intent hIntent = new Intent(MainActivity.this,HomeActivity.class);
+        Intent hIntent = new Intent(MainActivity.this, HomeActivity.class);
         hIntent.putExtra("studentname",name);
         startActivity(hIntent);
     }
