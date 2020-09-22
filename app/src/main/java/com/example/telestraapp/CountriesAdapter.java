@@ -9,13 +9,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.telestraapp.model.Location;
+
+import java.util.List;
+
 public class CountriesAdapter extends RecyclerView.Adapter<CountriesAdapter.CountryViewHolder> {//4
 
 String[] mCountries;//8
     private LayoutInflater mInflater;//10
+    List<Location> locationList;
 
-    public CountriesAdapter(String[] countries, Context context) {
-        mCountries = countries;//8a
+    public CountriesAdapter(List<Location> mLocations, Context context) {
+       // mCountries = countries;//8a
+        locationList = mLocations;
         mInflater = LayoutInflater.from(context);//11
     }
 
@@ -28,12 +34,16 @@ String[] mCountries;//8
 
     @Override//onBindViewHolder -- write the data on to the newly created/recycled  plank
     public void onBindViewHolder(@NonNull CountryViewHolder holder, int position) {//6
-        holder.countryText.setText(mCountries[position]);  //binding the data onto the inflated plank//15
+        Location location = locationList.get(position);
+        holder.countryText.setText(location.getCountry());
+        holder.state.setText(location.getState());
+                //mCountries[position]);  //binding the data onto the inflated plank//15
     }
 
     @Override // getItemCount -- tell how many data items are there so that the above 2 guys can create or recycle items
     public int getItemCount() {//6
-        return mCountries.length;//9
+        //return mCountries.length;//9
+        return locationList.size();
     }
 
     /**
@@ -41,9 +51,11 @@ String[] mCountries;//8
      */
     public class CountryViewHolder extends RecyclerView.ViewHolder {//5
        public TextView countryText;//14
+        public TextView state;
         public CountryViewHolder(@NonNull View itemView) {
             super(itemView);
             countryText =  itemView.findViewById(R.id.textViewCountry);//16
+            state = itemView.findViewById(R.id.textViewState);
         }
     }
 }
