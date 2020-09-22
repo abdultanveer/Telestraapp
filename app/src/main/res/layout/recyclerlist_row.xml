@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="#000"
     android:layout_height="wrap_content">
-
+<!--6a-->
     <TextView
         android:id="@+id/textViewCountry"
         android:textSize="25sp"
