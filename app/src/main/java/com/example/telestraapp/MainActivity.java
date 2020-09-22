@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.telestraapp.overide.Gst;
+import com.example.telestraapp.staticdemo.Student;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName() ; //"MainActivity"
@@ -71,20 +72,29 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.buttonLogin:
+                int a = add(10,20);
+
                 startHomeActivity();
                 break;
             case R.id.buttonCancel:
                 dialPhone();
+                Student student = new Student();
+                student.name = "abdul";
+               // Student.COLLEGE_NAME;
                 break;
         }
 
+    }
+
+    private int add(int i, int i1) {
+        return  i+i1;
     }
 
     private void dialPhone() {
         Log.v(TAG,"dialing phone no");
 
         Intent dIntent = new Intent();
-        dIntent.setAction(Intent.ACTION_DIAL);
+        dIntent.setAction(Intent.ACTION_DIAL);// implicit intent
         dIntent.setData( Uri.parse("tel:98765432"));
         startActivity(dIntent);
     }
@@ -94,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 
         String name = nameEditText.getText().toString();
         Toast.makeText(this, "welcome "+name +" to android", Toast.LENGTH_SHORT).show();
-        Intent hIntent = new Intent(MainActivity.this, HomeActivity.class);
+        Intent hIntent = new Intent(MainActivity.this, HomeActivity.class); //explicit intent
         hIntent.putExtra("studentname",name);
         startActivity(hIntent);
     }
