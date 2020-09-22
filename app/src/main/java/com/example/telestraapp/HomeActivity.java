@@ -1,9 +1,12 @@
 package com.example.telestraapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -24,6 +27,7 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
         setContentView(R.layout.activity_home);
 
         Button hButton = findViewById(R.id.buttonHome);
+        registerForContextMenu(hButton);
         hButton.setOnClickListener(this);
 
         ListView countriesListView = findViewById(R.id.countrieslist);
@@ -41,6 +45,24 @@ public class HomeActivity extends AppCompatActivity implements AdapterView.OnIte
             TextView nameTextView = findViewById(R.id.textViewname);
             nameTextView.setText(mName);
         }
+    }
+
+
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        getMenuInflater().inflate(R.menu.recycler_menu,menu);
+    }
+
+    @Override
+    public boolean onContextItemSelected(@NonNull MenuItem item) {
+         super.onContextItemSelected(item);
+         switch (item.getItemId()){
+             case R.id.logout:
+                 Toast.makeText(this, "context logout", Toast.LENGTH_SHORT).show();
+                 break;
+         }
+        return true;
     }
 
     @Override

@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.telestraapp.overide.Gst;
@@ -71,6 +72,12 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG,"button Clicked");
 
         switch (view.getId()){
+
+            case R.id.buttonClick:
+                String name = nameEditText.getText().toString();
+                TextView testTextView = findViewById(R.id.textViewtest);
+                testTextView.setText(name);
+                break;
             case R.id.buttonLogin:
                 int a = add(10,20);
 
