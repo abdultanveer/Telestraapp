@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.telestraapp.overide.Gst;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName() ; //"MainActivity"
     EditText nameEditText;
@@ -31,18 +33,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         Log.i(TAG,"mainactivity onStart");
+        Gst gst = new Gst();
+        gst.calculateTax(10000);
 
     }
 
     @Override
-    protected void onResume() {
+    protected void onResume() { //restore the data
         super.onResume();
         Log.i(TAG,"mainactivity onResume");
 
     }
 
     @Override
-    protected void onPause() {
+    protected void onPause() { //saving data
         super.onPause();
         Log.i(TAG,"mainactivity onPause");
 
