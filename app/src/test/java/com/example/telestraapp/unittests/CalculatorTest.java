@@ -1,10 +1,12 @@
 package com.example.telestraapp.unittests;
 
+import junit.framework.TestCase;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class CalculatorTest {
+public class CalculatorTest extends TestCase {
 
     @Test
    public void  add_test(){
