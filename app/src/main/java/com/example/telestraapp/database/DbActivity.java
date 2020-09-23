@@ -3,21 +3,24 @@ package com.example.telestraapp.database;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
-import com.example.telestraapp.database.FeedReaderContract.FeedEntry;
+import android.widget.Toast;
 
 
 import com.example.telestraapp.R;
 
 public class DbActivity extends AppCompatActivity {
-EditText titleET,subtitleET;
+    private static final String TAG = DbActivity.class.getSimpleName();
+    EditText titleET,subtitleET;
 ListView dbListView;
 Dao dao;
     @Override
@@ -28,16 +31,19 @@ Dao dao;
         subtitleET = findViewById(R.id.subtitleedittext);
         dao = new Dao(this);
         dao.openDb();
-
+        //FeedReaderContract.FeedEntry.TABLE_NAME;
         dbListView = findViewById(R.id.dblist);
-        Cursor dataCursor =  dao.readRows();
+       /* Cursor dataCursor =  dao.readRows();
         Cursor cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
+        */
+        Uri uriSms = Uri.parse("content://sms/inbox");
+        Cursor c = getContentResolver().query(uriSms, null,null,null,null);
 
-
+       // Log.i(TAG,"messagebody="+c.getString(c.getColumnIndexOrThrow("body"))+uriSms.toString());
         CursorAdapter adapter = new SimpleCursorAdapter(DbActivity.this,
                 android.R.layout.simple_list_item_1,  //layout
-                cursor, //data
-                new String[]{"display_name"},
+                c, //data
+                new String[]{"body"},
                         //ContactsContract.Contacts.DISPLAY_NAME,ContactsContract.CommonDataKinds.Phone.NUMBER},
                         //FeedEntry.COLUMN_NAME_TITLE,FeedEntry.COLUMN_NAME_SUBTITLE},// from column names
                 new int[]{android.R.id.text1}); ///to these 2 textviews
@@ -70,5 +76,11 @@ Dao dao;
         dao.createRow(title,subtitle);
         /*Note note = new Note(title,subtitle);
         dao.createRow(note);*/
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Toast.makeText(this, "back pressed", Toast.LENGTH_SHORT).show();
     }
 }

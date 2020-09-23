@@ -13,7 +13,9 @@ import com.example.telestraapp.database.FeedReaderContract.FeedEntry;
 public class FeedReaderDbHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES =
             "CREATE TABLE " + FeedEntry.TABLE_NAME + " (" +
-                    FeedEntry._ID + " INTEGER PRIMARY KEY," +
+                   // FeedEntry._ID +
+                    "_id"+
+                    " INTEGER PRIMARY KEY," +
                     FeedEntry.COLUMN_NAME_TITLE + " TEXT," +
                     FeedEntry.COLUMN_NAME_SUBTITLE + " TEXT)";
 
