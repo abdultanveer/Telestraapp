@@ -3,6 +3,7 @@ package com.example.telestraapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -17,7 +18,10 @@ import com.example.telestraapp.staticdemo.Student;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getSimpleName() ; //"MainActivity"
-    EditText nameEditText;
+    public static final String SHAREDPREFS = "sharedprefs";
+    public static final String KEYNAME = "keyname";
+    public static final String KEYPWD = "keypwd";
+    EditText nameEditText, pwdEditText;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         mButton.setText("sign in");
         setContentView(mButton);*/
         nameEditText = findViewById(R.id.editTextTextPersonName); //initialised here ---
+        pwdEditText = findViewById(R.id.editTextTextPassword);
 
     }
 
@@ -44,14 +49,44 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() { //restore the data
         super.onResume();
         Log.i(TAG,"mainactivity onResume");
+        restoreData();
 
+    }
+
+    //the value from sharedprefs should be visible in edittexts and even after hitting back button we should be able to get back the values
+    private void restoreData() {
+        //open the file
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREFS,MODE_PRIVATE);
+
+        //read the file
+        String name = preferences.getString(KEYNAME,"");
+        String pwd = preferences.getString(KEYPWD,"");
+        //restore the datq in edittexts
+        nameEditText.setText(name);
+        pwdEditText.setText(pwd);
     }
 
     @Override
     protected void onPause() { //saving data
         super.onPause();
         Log.i(TAG,"mainactivity onPause");
+        saveData();
 
+    }
+
+    private void saveData() {///test case --onpause --if data is saved successfully then i should be able to open the file and see the data stored in that file
+        //get the data from edittexts
+        String name = nameEditText.getText().toString();
+        String pwd = pwdEditText.getText().toString();
+        //create a file sharedprefs
+        SharedPreferences preferences = getSharedPreferences(SHAREDPREFS,MODE_PRIVATE);
+        //open that file
+        SharedPreferences.Editor editor = preferences.edit();
+        //write to file
+        editor.putString(KEYNAME,name);
+        editor.putString(KEYPWD,pwd);
+        //save the file
+        editor.commit();
     }
 
     @Override
