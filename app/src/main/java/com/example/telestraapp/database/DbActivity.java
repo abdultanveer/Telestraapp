@@ -2,15 +2,22 @@ package com.example.telestraapp.database;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CursorAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
+import com.example.telestraapp.database.FeedReaderContract.FeedEntry;
+
 
 import com.example.telestraapp.R;
 
 public class DbActivity extends AppCompatActivity {
 EditText titleET,subtitleET;
+ListView dbListView;
 Dao dao;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +27,17 @@ Dao dao;
         subtitleET = findViewById(R.id.subtitleedittext);
         dao = new Dao(this);
         dao.openDb();
+
+        dbListView = findViewById(R.id.dblist);
+        Cursor dataCursor =  dao.readRows();
+
+        CursorAdapter adapter = new SimpleCursorAdapter(this,
+                android.R.layout.simple_list_item_2,  //layout
+                dataCursor, //data
+                new String[]{FeedEntry.COLUMN_NAME_TITLE,FeedEntry.COLUMN_NAME_SUBTITLE},// from column names
+                new int[]{android.R.id.text1,android.R.id.text2}); ///to these 2 textviews
+
+        dbListView.setAdapter(adapter);
 
     }
 
@@ -45,5 +63,7 @@ Dao dao;
         String title = titleET.getText().toString();
         String subtitle = subtitleET.getText().toString();
         dao.createRow(title,subtitle);
+        /*Note note = new Note(title,subtitle);
+        dao.createRow(note);*/
     }
 }

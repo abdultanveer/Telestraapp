@@ -78,7 +78,7 @@
           <port value="1234" />
           <database value="database" />
           <files>
-            <file path="C:\Users\Admin\Desktop\dbname" schema="main" />
+            <file path="C:\Users\Admin\Documents\AndroidStudio\DeviceExplorer\Pixel_2_API_28 [emulator-5554]\data\data\com.example.telestraapp\databases\dbname" schema="main" />
           </files>
           <type value="NONE" />
           <user value="" />

@@ -32,6 +32,11 @@ public class Dao {
         values.put(FeedEntry.COLUMN_NAME_SUBTITLE,subtitle);
         database.insert(FeedEntry.TABLE_NAME,null,values);
     }
+
+    /**
+     * this will return pointer to the dataset containing all the rows
+     * @return
+     */
     public Cursor readRows(){
         return database.query(FeedEntry.TABLE_NAME,null,null,null,null,null,null);
        // database.execSQL("select * from entry");
@@ -53,4 +58,10 @@ public class Dao {
     public void updateRow(){}
     public void deleteRow(){}
 
+    public void createRow(Note note) {
+        ContentValues values = new ContentValues();
+        values.put(FeedEntry.COLUMN_NAME_TITLE,note.getTitle());
+        values.put(FeedEntry.COLUMN_NAME_SUBTITLE,note.getSubTitle());
+        database.insert(FeedEntry.TABLE_NAME,null,values);
+    }
 }

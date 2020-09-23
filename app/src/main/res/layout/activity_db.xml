@@ -11,9 +11,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="179dp"
         android:ems="10"
         android:hint="enter title"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/_dynamic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,8 +38,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
         android:layout_marginLeft="15dp"
-        android:text="put"
         android:onClick="handleDbClicks"
+        android:text="put"
         app:layout_constraintBaseline_toBaselineOf="@+id/buttonget"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -48,8 +50,8 @@
         android:layout_marginStart="31dp"
         android:layout_marginLeft="31dp"
         android:layout_marginTop="24dp"
-        android:text="get"
         android:onClick="handleDbClicks"
+        android:text="get"
 
         app:layout_constraintStart_toEndOf="@+id/buttonput"
         app:layout_constraintTop_toBottomOf="@+id/subtitleedittext" />
@@ -64,4 +66,18 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonput" />
+
+    <ListView
+        android:id="@+id/dblist"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginLeft="1dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginRight="1dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewdb" />
 </androidx.constraintlayout.widget.ConstraintLayout>
