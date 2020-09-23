@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.CursorAdapter;
 import android.widget.EditText;
@@ -30,12 +31,16 @@ Dao dao;
 
         dbListView = findViewById(R.id.dblist);
         Cursor dataCursor =  dao.readRows();
+        Cursor cursor = getContentResolver().query(ContactsContract.Contacts.CONTENT_URI,null, null, null, null);
 
-        CursorAdapter adapter = new SimpleCursorAdapter(this,
-                android.R.layout.simple_list_item_2,  //layout
-                dataCursor, //data
-                new String[]{FeedEntry.COLUMN_NAME_TITLE,FeedEntry.COLUMN_NAME_SUBTITLE},// from column names
-                new int[]{android.R.id.text1,android.R.id.text2}); ///to these 2 textviews
+
+        CursorAdapter adapter = new SimpleCursorAdapter(DbActivity.this,
+                android.R.layout.simple_list_item_1,  //layout
+                cursor, //data
+                new String[]{"display_name"},
+                        //ContactsContract.Contacts.DISPLAY_NAME,ContactsContract.CommonDataKinds.Phone.NUMBER},
+                        //FeedEntry.COLUMN_NAME_TITLE,FeedEntry.COLUMN_NAME_SUBTITLE},// from column names
+                new int[]{android.R.id.text1}); ///to these 2 textviews
 
         dbListView.setAdapter(adapter);
 
