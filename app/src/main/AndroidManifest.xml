@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -13,8 +14,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".network.BooksActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <service
-            android:name=".MusicService"></service>
+            android:name=".DownloadIntentService"
+            android:exported="false" />
+        <service android:name=".MusicService" />
         <!--
         static broadcast receiver
         <receiver android:name=".SmsReceiver" android:exported="true" android:enabled="true" >
@@ -26,15 +37,11 @@
         </receiver>
         -->
         <activity android:name=".AsyncActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".database.DbActivity"
-            android:theme="@style/myfonts"></activity>
+            android:theme="@style/myfonts" />
         <activity android:name=".RecyclerActivity" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity" />
