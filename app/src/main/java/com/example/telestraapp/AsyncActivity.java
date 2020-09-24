@@ -21,7 +21,7 @@ ProgressBar progressBar;
     }
 
     public void taskClick(View view) {
-        DownloadTask downloadTask = new DownloadTask(progressBar);
+        DownloadTask downloadTask = new DownloadTask(progressBar,this);
         downloadTask.execute("www.imageurltobedowloaded.com");
     }
 }
