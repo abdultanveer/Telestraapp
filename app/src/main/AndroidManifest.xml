@@ -13,22 +13,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <receiver android:name=".SmsReceiver">
+        <!--static broadcast receiver
+        <receiver android:name=".SmsReceiver" android:exported="true" android:enabled="true" >
             <intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
 
-        </receiver>
+        </receiver>-->
 
-        <activity android:name=".AsyncActivity"></activity>
-        <activity
-            android:name=".database.DbActivity"
-            android:theme="@style/myfonts">
+        <activity android:name=".AsyncActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".database.DbActivity"
+            android:theme="@style/myfonts">
+
         </activity>
         <activity android:name=".RecyclerActivity" />
         <activity android:name=".HomeActivity"></activity>
