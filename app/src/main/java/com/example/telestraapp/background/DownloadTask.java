@@ -33,6 +33,7 @@ public class DownloadTask extends AsyncTask<String,Integer,Void> { //inputtype, 
     @Override
     protected Void doInBackground(String... strings) {  //bg thread --- bawarchi--cook
         Log.i(TAG,strings[0]);
+        //mProgressBar.setProgress(20);
         try {
 
             for(int i=1; i<=20; i++){
