@@ -18,14 +18,39 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/buttonTask"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="58dp"
         android:layout_marginEnd="101dp"
         android:layout_marginRight="101dp"
-        android:text="start download"
         android:onClick="taskClick"
+        android:text="start download"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progressBardownload" />
+
+    <Button
+        android:id="@+id/buttonstart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="17dp"
+
+        android:layout_marginLeft="17dp"
+        android:layout_marginTop="35dp"
+        android:onClick="taskClick"
+        android:text="start service"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTask" />
+
+    <Button
+        android:id="@+id/buttonstop"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:onClick="taskClick"
+        android:text="stop service"
+        app:layout_constraintEnd_toEndOf="@+id/buttonTask"
+        app:layout_constraintStart_toEndOf="@+id/buttonTask"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTask" />
 </androidx.constraintlayout.widget.ConstraintLayout>
