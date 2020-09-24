@@ -2,6 +2,7 @@ package com.example.telestraapp;
 
 import android.app.Service;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -14,6 +15,8 @@ public class MusicService extends Service {
     public void onCreate() {
         super.onCreate();
         Log.i(TAG,"service created");
+        MediaPlayer.create(this,R.raw.file).start();
+
     }
 
     @Override
