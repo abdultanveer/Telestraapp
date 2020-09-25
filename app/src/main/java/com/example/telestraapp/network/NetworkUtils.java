@@ -1,6 +1,7 @@
 package com.example.telestraapp.network;
 
 import android.net.Uri;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -27,7 +28,8 @@ public class NetworkUtils {
 
         // Set up variables for the try block that need to be closed in the finally block.
         HttpURLConnection urlConnection = null;
-        BufferedReader reader = null;
+
+        BufferedReader reader = null; //read response you receive
         String bookJSONString = null;
 
         // Attempt to query the Books API.
@@ -42,7 +44,7 @@ public class NetworkUtils {
                     .appendQueryParameter(PRINT_TYPE, "books")
                     .build();
 
-            URL requestURL = new URL(builtURI.toString());
+            URL requestURL = new URL(builtURI.toString());  //url
 
             // Open the network connection.
             urlConnection = (HttpURLConnection) requestURL.openConnection();
@@ -91,6 +93,7 @@ public class NetworkUtils {
         }
 
         // Return the raw response.
+        Log.i(LOG_TAG,bookJSONString);
         return bookJSONString;
     }
 }

@@ -16,6 +16,7 @@ public class MusicService extends Service {
         super.onCreate();
         Log.i(TAG,"service created");
         MediaPlayer.create(this,R.raw.file).start();
+        stopSelf();
 
     }
 

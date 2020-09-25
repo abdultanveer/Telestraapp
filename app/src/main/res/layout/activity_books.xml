@@ -62,4 +62,20 @@
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/titleText" />
+
+    <Button
+        android:id="@+id/buttonnotification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+
+        android:layout_marginTop="27dp"
+        android:layout_marginEnd="148dp"
+        android:layout_marginRight="148dp"
+        android:onClick="searchBooks"
+        android:text="notification"
+        app:layout_constraintEnd_toEndOf="@+id/instructions"
+        app:layout_constraintStart_toStartOf="@+id/bookInput"
+        app:layout_constraintTop_toBottomOf="@+id/bookInput" />
 </androidx.constraintlayout.widget.ConstraintLayout>

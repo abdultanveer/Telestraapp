@@ -25,10 +25,10 @@ public class FetchBook extends AsyncTask<String,Void,String> {
 
     //Method for handling the results on the UI thread
     @Override
-    protected void onPostExecute(String s) {
-        super.onPostExecute(s);
+    protected void onPostExecute(String jsonString) {
+        super.onPostExecute(jsonString);
         try {
-            JSONObject jsonObject = new JSONObject(s);
+            JSONObject jsonObject = new JSONObject(jsonString);
             JSONArray itemsArray = jsonObject.getJSONArray("items");
             for (int i = 0; i < itemsArray.length(); i++) {
                 JSONObject book = itemsArray.getJSONObject(i);
