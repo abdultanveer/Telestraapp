@@ -7,13 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.Toast;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link HeadlinesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HeadlinesFragment extends Fragment {
+public class HeadlinesFragment extends Fragment implements AdapterView.OnItemClickListener {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,10 +58,19 @@ public class HeadlinesFragment extends Fragment {
         }
     }
 
+    ListView headlinesListView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_headlines, container, false);
+        View view = inflater.inflate(R.layout.fragment_headlines, container, false);
+        headlinesListView = view.findViewById(R.id.headlineslistview);
+        headlinesListView.setOnItemClickListener(this);
+        return  view;
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(getActivity(), parent.getItemAtPosition(position).toString(), Toast.LENGTH_SHORT).show();
     }
 }
